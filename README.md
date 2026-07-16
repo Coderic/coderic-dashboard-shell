@@ -1,8 +1,8 @@
 # @coderic/dashboard-shell
 
-PatternFly 6 dashboard shell: layout, sidebar navigation, Auth0 provider, protected routes.
+PatternFly 6 dashboard shell: masthead, sidebar, Auth0 provider, protected routes, React Query bootstrap.
 
-Generic text brand mark only — no proprietary logos or tenant defaults.
+**Generic text brand only** (`BrandMark`). No proprietary logos or default tenant labels.
 
 ## Install
 
@@ -10,18 +10,87 @@ Generic text brand mark only — no proprietary logos or tenant defaults.
 npm install @coderic/dashboard-shell @coderic/dashboard-core @coderic/acl
 ```
 
-Peer dependencies: React 19, PatternFly 6, Auth0 SPA SDK, TanStack Query, React Router.
+Peers (install in app): React 19, React Router 7, PatternFly 6, `@auth0/auth0-spa-js`, `@tanstack/react-query`.
+
+```ini
+@coderic:registry=https://npm.pkg.github.com
+//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}
+```
+
+Repo: https://github.com/Coderic/coderic-dashboard-shell
+
+Styles: `import "@coderic/dashboard-shell/styles";`
+
+## Exports
+
+| Symbol | Purpose |
+|--------|---------|
+| `DashboardRoot` | QueryClient + `DashboardAuthProvider` wrapper (**requires `claimsConfig`**) |
+| `DashboardAuthProvider` | Auth0 SPA + ACL context |
+| `AppShell` | PatternFly `Page` layout with sidebar |
+| `ProtectedRoute` | Redirect unauthenticated users |
+| `RouterLinkButton` | PF button as React Router link |
+| `BrandMark` | Text masthead brand (`title`, optional `subtitle`) |
+| `useAuth`, `useAccessToken` | Auth hooks |
+
+CSS classes use prefix `dsh-*` (not vendor-specific).
 
 ## Usage
 
 ```tsx
-import { DashboardRoot, AppShell } from "@coderic/dashboard-shell";
+import { DashboardRoot, AppShell, ProtectedRoute } from "@coderic/dashboard-shell";
 import "@coderic/dashboard-shell/styles";
+import { env } from "./config/env";
+import { claimsConfig } from "./config/claims";
+import { dashboardRegistry } from "./auth/registry";
 
-<DashboardRoot env={env} registry={registry} claimsConfig={claimsConfig}>
-  <AppRoutes />
-</DashboardRoot>
+createRoot(document.getElementById("root")!).render(
+  <DashboardRoot
+    env={env}
+    registry={dashboardRegistry}
+    claimsConfig={claimsConfig}
+    isAdminUser={(user) => user?.email?.endsWith("@example.com")}
+  >
+    <BrowserRouter basename="/dashboard">
+      <Routes>
+        <Route element={<ProtectedRoute><AppShell … /></ProtectedRoute>}>
+          …
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  </DashboardRoot>,
+);
 ```
+
+### AppShell props
+
+```tsx
+<AppShell
+  brandTitle="MY PRODUCT"
+  brandSubtitle="CONSOLE"
+  footerLabel="CONSOLE"
+  dashboardLink={{ label: "Home", to: "/" }}
+  navSections={[…]}
+  showPaymentsBilling={false}
+/>
+```
+
+**Removed (do not use):** `CodericAuthProvider`, `MasterBrand`, `portalLabel`.
+
+## Coderic portal mapping
+
+| Portal | `brandSubtitle` | `auth0ClientGroup` |
+|--------|-----------------|---------------------|
+| coderic.cloud | CLOUD | corporate |
+| coderic.store | STORE | corporate |
+| coderic.com | BUSINESS | corporate |
+| coderic.financial | FINTECH | corporate |
+| coderic.dev | DEVELOPMENT | foundation |
+| coderic.org | ORGANIZATION | foundation |
+| coderic.net | NETWORK | foundation |
+| coderic.io | HUB | foundation |
+
+Always set `brandTitle="CODERIC"` in Coderic portals.
 
 ## License
 
