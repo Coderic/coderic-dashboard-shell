@@ -9,7 +9,6 @@ import {
 import { NavLink, useLocation } from "react-router-dom";
 import type { NavLink as NavLinkDef, NavSection } from "../nav-types";
 import { NavIcon } from "./NavIcon";
-import { useAuth } from "../auth/DashboardAuthProvider";
 
 function isActive(pathname: string, route: string, exact?: boolean): boolean {
   if (exact) return pathname === route || (route !== "/" && pathname === route);
@@ -17,26 +16,13 @@ function isActive(pathname: string, route: string, exact?: boolean): boolean {
   return pathname === route || pathname.startsWith(`${route}/`);
 }
 
-function displayName(user: { name?: string; email?: string; nickname?: string } | undefined): string {
-  return user?.name ?? user?.nickname ?? user?.email ?? "User";
-}
-
-function initials(user: { name?: string; email?: string; nickname?: string } | undefined): string {
-  const n = displayName(user);
-  const parts = n.split(/\s+/).filter(Boolean);
-  if (parts.length >= 2) return (parts[0][0] + parts[1][0]).toUpperCase();
-  return n.slice(0, 2).toUpperCase();
-}
-
 export type SidebarNavProps = {
-  footerLabel: string;
   dashboardLink: NavLinkDef;
   navSections: NavSection[];
 };
 
-export function SidebarNav({ footerLabel, dashboardLink, navSections }: SidebarNavProps) {
+export function SidebarNav({ dashboardLink, navSections }: SidebarNavProps) {
   const { pathname } = useLocation();
-  const { user } = useAuth();
   return (
     <PageSidebar>
       <PageSidebarBody>
@@ -70,13 +56,6 @@ export function SidebarNav({ footerLabel, dashboardLink, navSections }: SidebarN
             ))}
           </NavList>
         </Nav>
-        <div className="dsh-sidebar-footer">
-          <div className="dsh-avatar">{initials(user)}</div>
-          <div>
-            <strong>{displayName(user)}</strong>
-            <div className="dsh-sidebar-meta">{footerLabel}</div>
-          </div>
-        </div>
       </PageSidebarBody>
     </PageSidebar>
   );

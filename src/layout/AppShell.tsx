@@ -19,18 +19,16 @@ import { UserMenu } from "./UserMenu.js";
 
 export type AppShellProps = {
   brand: DashboardBrandConfig;
-  footerLabel: string;
   dashboardLink: NavLinkDef;
   navSections: NavSection[];
-  showPaymentsBilling?: boolean;
+  showBilling?: boolean;
 };
 
 export function AppShell({
   brand,
-  footerLabel,
   dashboardLink,
   navSections,
-  showPaymentsBilling = false,
+  showBilling = false,
 }: AppShellProps) {
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const themeStyle = brandThemeStyle(brand.accent);
@@ -51,7 +49,7 @@ export function AppShell({
       </MastheadMain>
       <MastheadContent>
         <div className="dsh-masthead-actions">
-          <UserMenu showPaymentsBilling={showPaymentsBilling} />
+          <UserMenu showBilling={showBilling} />
         </div>
       </MastheadContent>
     </Masthead>
@@ -62,7 +60,7 @@ export function AppShell({
       masthead={header}
       sidebar={
         sidebarOpen ? (
-          <SidebarNav footerLabel={footerLabel} dashboardLink={dashboardLink} navSections={navSections} />
+          <SidebarNav dashboardLink={dashboardLink} navSections={navSections} />
         ) : undefined
       }
       isManagedSidebar

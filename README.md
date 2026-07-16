@@ -89,12 +89,10 @@ createRoot(document.getElementById("root")!).render(
 
 ```tsx
 <AppShell
-  brandTitle="MY PRODUCT"
-  brandSubtitle="CONSOLE"
-  footerLabel="CONSOLE"
-  dashboardLink={{ label: "Home", to: "/" }}
+  brand={dashboardBrand}
+  dashboardLink={{ label: "Home", route: "/" }}
   navSections={[…]}
-  showPaymentsBilling={false}
+  showBilling={false}
 />
 ```
 

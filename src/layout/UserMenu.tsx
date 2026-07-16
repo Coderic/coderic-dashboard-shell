@@ -8,6 +8,7 @@ import {
   MenuToggle,
   type MenuToggleElement,
 } from "@patternfly/react-core";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../auth/DashboardAuthProvider";
 
 function displayName(user: { name?: string; email?: string; nickname?: string } | undefined): string {
@@ -22,11 +23,12 @@ function initials(user: { name?: string; email?: string; nickname?: string } | u
 }
 
 export type UserMenuProps = {
-  showPaymentsBilling?: boolean;
+  showBilling?: boolean;
 };
 
-export function UserMenu({ showPaymentsBilling = false }: UserMenuProps) {
+export function UserMenu({ showBilling = false }: UserMenuProps) {
   const { user, logout } = useAuth();
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const name = displayName(user);
   const email = user?.email ?? "";
@@ -66,9 +68,9 @@ export function UserMenu({ showPaymentsBilling = false }: UserMenuProps) {
         <DropdownItem key="profile" to="/profile/">
           Profile
         </DropdownItem>
-        {showPaymentsBilling ? (
-          <DropdownItem key="payments-billing" to="/billing/payments/">
-            Payments & Billing
+        {showBilling ? (
+          <DropdownItem key="billing" onClick={() => navigate("/billing")}>
+            Billing
           </DropdownItem>
         ) : null}
         <DropdownItem key="hello-world" to="/hello-world/">
