@@ -1,0 +1,60 @@
+{
+  "name": "@coderic/dashboard-shell",
+  "version": "0.1.0",
+  "description": "PatternFly 6 dashboard shell — layout, navigation, Auth0 integration",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./styles": "./dist/styles/sidebar.css"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json && mkdir -p dist/styles && cp src/styles/sidebar.css dist/styles/sidebar.css",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "@coderic/acl": "^0.1.0",
+    "@coderic/dashboard-core": "^0.1.0"
+  },
+  "peerDependencies": {
+    "@auth0/auth0-spa-js": "^2.0.0",
+    "@patternfly/react-core": "^6.0.0",
+    "@patternfly/react-icons": "^6.0.0",
+    "@tanstack/react-query": "^5.0.0",
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0",
+    "react-router-dom": "^6.0.0 || ^7.0.0"
+  },
+  "devDependencies": {
+    "@auth0/auth0-spa-js": "^2.23.0",
+    "@patternfly/react-core": "^6.6.0",
+    "@patternfly/react-icons": "^6.6.0",
+    "@tanstack/react-query": "^5.101.2",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "react-router-dom": "^7.18.1",
+    "typescript": "^6.0.3"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Coderic/coderic-dashboard-shell.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Coderic/coderic-dashboard-shell/issues"
+  },
+  "homepage": "https://github.com/Coderic/coderic-dashboard-shell#readme",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "public"
+  }
+}

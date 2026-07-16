@@ -1,0 +1,104 @@
+.pf-v6-c-masthead__brand .dsh-brand {
+  vertical-align: middle;
+}
+
+.dsh-brand {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+  line-height: 1.1;
+  gap: 0.125rem;
+}
+
+.dsh-brand__title {
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.dsh-brand__subtitle {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--pf-t--global--text--color--subtle);
+}
+
+.dsh-masthead-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  margin-inline-start: auto;
+}
+
+.dsh-user-menu-name {
+  max-width: 10rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dsh-user-menu-initials {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  background: var(--pf-t--global--color--brand--default);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.pf-v6-c-page .pf-v6-c-page__sidebar {
+  margin-block-start: 0;
+}
+
+.pf-v6-c-page .pf-v6-c-page__sidebar-main {
+  margin-block-start: 0;
+  border-start-start-radius: 0;
+  border-start-end-radius: 0;
+  overflow: clip;
+}
+
+.dsh-nav-icon {
+  display: inline-flex;
+  margin-right: 0.5rem;
+  vertical-align: middle;
+}
+
+.dsh-sidebar-footer {
+  margin-top: auto;
+  padding: 1rem 1.25rem;
+  border-top: 1px solid var(--pf-t--global--border--color--default);
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.dsh-avatar {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  background: var(--pf-t--global--color--brand--default);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.dsh-sidebar-meta {
+  font-size: 0.75rem;
+  color: var(--pf-t--global--text--color--subtle);
+}
+
+.pf-v6-c-page-sidebar .pf-v6-c-nav__link {
+  display: flex;
+  align-items: center;
+}
