@@ -105,7 +105,7 @@ createRoot(document.getElementById("root")!).render(
 | coderic.cloud | CLOUD | corporate |
 | coderic.store | STORE | corporate |
 | coderic.com | BUSINESS | corporate |
-| coderic.financial | FINTECH | corporate |
+| coderic.financial | FINANCIAL | corporate |
 | coderic.dev | DEVELOPMENT | foundation |
 | coderic.org | ORGANIZATION | foundation |
 | coderic.net | NETWORK | foundation |
