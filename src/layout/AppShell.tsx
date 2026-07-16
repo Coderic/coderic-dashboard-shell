@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type CSSProperties } from "react";
 import {
   Button,
   Masthead,
@@ -11,14 +11,14 @@ import {
 } from "@patternfly/react-core";
 import { BarsIcon } from "@patternfly/react-icons";
 import { Outlet } from "react-router-dom";
+import type { DashboardBrandConfig } from "../brand-types.js";
 import type { NavLink as NavLinkDef, NavSection } from "../nav-types";
-import { BrandMark } from "./BrandMark";
-import { SidebarNav } from "./SidebarNav";
-import { UserMenu } from "./UserMenu";
+import { BrandMark, brandThemeStyle } from "./BrandMark.js";
+import { SidebarNav } from "./SidebarNav.js";
+import { UserMenu } from "./UserMenu.js";
 
 export type AppShellProps = {
-  brandTitle: string;
-  brandSubtitle?: string;
+  brand: DashboardBrandConfig;
   footerLabel: string;
   dashboardLink: NavLinkDef;
   navSections: NavSection[];
@@ -26,16 +26,16 @@ export type AppShellProps = {
 };
 
 export function AppShell({
-  brandTitle,
-  brandSubtitle,
+  brand,
   footerLabel,
   dashboardLink,
   navSections,
   showPaymentsBilling = false,
 }: AppShellProps) {
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  const themeStyle = brandThemeStyle(brand.accent);
   const header = (
-    <Masthead>
+    <Masthead style={themeStyle as CSSProperties}>
       <MastheadMain>
         <MastheadToggle>
           <Button
@@ -46,7 +46,7 @@ export function AppShell({
           />
         </MastheadToggle>
         <MastheadBrand>
-          <BrandMark title={brandTitle} subtitle={brandSubtitle} />
+          <BrandMark {...brand} />
         </MastheadBrand>
       </MastheadMain>
       <MastheadContent>
@@ -58,6 +58,7 @@ export function AppShell({
   );
   return (
     <Page
+      style={themeStyle as CSSProperties}
       masthead={header}
       sidebar={
         sidebarOpen ? (

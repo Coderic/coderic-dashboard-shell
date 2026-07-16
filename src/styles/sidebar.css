@@ -2,13 +2,51 @@
   vertical-align: middle;
 }
 
+.dsh-brand-link {
+  display: inline-flex;
+  text-decoration: none;
+  color: inherit;
+}
+
+.dsh-brand-link:hover {
+  text-decoration: none;
+}
+
 .dsh-brand {
   display: inline-flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  align-items: center;
   min-width: 0;
   line-height: 1.1;
-  gap: 0.125rem;
+  gap: 0.625rem;
+}
+
+.dsh-brand__logo {
+  flex-shrink: 0;
+  height: 2.75rem;
+  width: auto;
+}
+
+.dsh-brand__wordmark {
+  display: block;
+  height: 2.5rem;
+  width: auto;
+  max-width: min(220px, 42vw);
+}
+
+.dsh-brand__title-svg {
+  font-size: 32px;
+  font-weight: 600;
+  font-family: "Red Hat Display", "Outfit", sans-serif;
+  letter-spacing: -1.5px;
+}
+
+.dsh-brand__subtitle-svg {
+  font-size: 16px;
+  font-weight: 600;
+  font-family: "Red Hat Display", "Outfit", sans-serif;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
 }
 
 .dsh-brand__title {
@@ -23,7 +61,7 @@
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: var(--pf-t--global--text--color--subtle);
+  color: var(--dsh-accent-end, var(--pf-t--global--text--color--subtle));
 }
 
 .dsh-masthead-actions {

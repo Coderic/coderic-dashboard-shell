@@ -1,7 +1,8 @@
+export type { DashboardBrandAccent, DashboardBrandConfig } from "./brand-types.js";
 export type { NavLink, NavSection } from "./nav-types.js";
 export { AppShell, type AppShellProps } from "./layout/AppShell.js";
 export { SidebarNav, type SidebarNavProps } from "./layout/SidebarNav.js";
-export { BrandMark, type BrandMarkProps } from "./layout/BrandMark.js";
+export { BrandMark, brandThemeStyle, type BrandMarkProps } from "./layout/BrandMark.js";
 export { UserMenu, type UserMenuProps } from "./layout/UserMenu.js";
 export { NavIcon } from "./layout/NavIcon.js";
 export {
