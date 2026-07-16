@@ -35,6 +35,29 @@ Styles: `import "@coderic/dashboard-shell/styles";`
 
 CSS classes use prefix `dsh-*` (not vendor-specific).
 
+## Vite (required in consuming apps)
+
+Prebuilt `@coderic/*` dist must share one React instance with the app:
+
+```ts
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+const appDir = path.dirname(fileURLToPath(import.meta.url));
+
+export default defineConfig({
+  resolve: {
+    dedupe: ["react", "react-dom", "react-router", "react-router-dom", "@tanstack/react-query"],
+    alias: {
+      react: path.join(appDir, "node_modules/react"),
+      "react-dom": path.join(appDir, "node_modules/react-dom"),
+    },
+  },
+});
+```
+
+Without this, runtime fails with `Cannot read properties of null (reading 'useEffect')`.
+
 ## Usage
 
 ```tsx
