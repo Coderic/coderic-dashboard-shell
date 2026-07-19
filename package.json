@@ -1,7 +1,7 @@
 {
   "name": "@coderic/dashboard-shell",
-  "version": "0.1.6",
-  "description": "PatternFly 6 dashboard shell — layout, navigation, Auth0 integration",
+  "version": "0.1.7",
+  "description": "PatternFly 6 dashboard shell \u2014 layout, navigation, Auth0 integration",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -12,7 +12,9 @@
     },
     "./styles": "./dist/styles/sidebar.css"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsc -p tsconfig.json && mkdir -p dist/styles && cp src/styles/sidebar.css dist/styles/sidebar.css",
     "prepublishOnly": "npm run build"

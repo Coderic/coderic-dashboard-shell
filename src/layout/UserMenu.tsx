@@ -73,9 +73,6 @@ export function UserMenu({ showBilling = false }: UserMenuProps) {
             Billing
           </DropdownItem>
         ) : null}
-        <DropdownItem key="hello-world" to="/hello-world/">
-          Hello World
-        </DropdownItem>
         <Divider component="li" key="sep-logout" />
         <DropdownItem key="logout" onClick={() => void logout()}>
           Sign out
