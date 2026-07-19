@@ -1,6 +1,6 @@
 {
   "name": "@coderic/dashboard-shell",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "PatternFly 6 dashboard shell \u2014 layout, navigation, Auth0 integration",
   "type": "module",
   "main": "./dist/index.js",

@@ -26,6 +26,13 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: npm run build
-      - run: npm publish --access public
+      - name: Publish package
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          VERSION="$(node -p "require('./package.json').version")"
+          if npm view "@coderic/dashboard-shell@${VERSION}" version --registry=https://npm.pkg.github.com >/dev/null 2>&1; then
+            echo "Version ${VERSION} already published; skipping npm publish."
+            exit 0
+          fi
+          npm publish --access public
